@@ -10,6 +10,13 @@ This repo is a clone of [varadbhogayata.github.io](https://github.com/varadbhoga
 
 ## Activity 2
 
+
+![Activity2a](./screenshots/activity2a.png)
+*Screenshot of repo*
+
+![Activity2b](./screenshots/activity2b.png)
+*Screenshot of deployed website*
+
 ## Activity 3
 
 ## Activity 4
