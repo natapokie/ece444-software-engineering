@@ -339,83 +339,14 @@
           <div id="recent-project">
             <!-- INSERT RECENT PROJECT -->
           </div>
-          <button class='buttons projects-button'>
-            See All Projects
+          <div id="all-projects">
+            <!-- INSERT ALL PROJECTS -->
+          </div>
+          <button id="projects-button" class='buttons projects-button'>
+            Show All Projects
           </button>
         </div>
         
-
-        <div class="row">
-
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="orientation website" src="./assets/img/froshweek.png" style="height: 100%; width: auto; overflow: hidden;" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Orientation Week Website<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Worked in a team to build a webite for F!rosh week to handle first year student registration and payment through Stripe. 
-                  The website was also used as a platform for the Scavenger Hunt event.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> React, Express.js, HTML/CSS, MongoDB</li>
-                  <li>Register/login to the website to sign up for F!rosh week</li>
-                  <li>View F!rosh Week schedule, FAQ page (enabling admins to add/update and delete questions and provide responses) and Announcements</li>
-                  <li>Upload missions for Scavenger Hunt event, enable certain users judging priveliges and assigning points to teams.</li>
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://www.orientation.skule.ca/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/UofT-Frosh-Orientation/orientation-website"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4">
-          <div class="card medium">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img alt="open source map" src="./assets/img/map.png" style="height: 100%; width: auto; overflow: hidden;" class="activator" />
-            </div>
-            <div class="card-content">
-              <span class="card-title activator teal-text hoverline">Open Source Map<i
-                  class="mdi-navigation-more-vert right"></i></span>
-              <p>
-                Worked in a team to build an open source map application, with path finding algoritms (Dijkstra and A*).
-              </p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text"><small>Accomplishments</small><i
-                  class="mdi-navigation-close right"></i></span>
-              <ul>
-                <li><b>Tools:</b> C++, Glade, GTK </li>
-                <li>Leveraged C++ STL classes, such as maps and vectors, to effectively store and manage street and intersection data to optimize
-                  search operations and path drawing</li>
-                <li>Utilized Glade and GTK to design and implement menu items and buttons to facilitate zooming, panning, and navigation
-                  within the map interface, as well as search bars enabling users to locate intersections by typing in street names.</li>
-                <li>Integrated path finding algorithms, Dijkstra and A* to quickly find and display the fastest path between two intersections.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-          
-
-          <!-- ************* -->
-        </div>
       </div>
     </section>
 
@@ -663,15 +594,26 @@
         ],
         url: 'https://www.orientation.skule.ca/',
         github: 'https://github.com/UofT-Frosh-Orientation/orientation-website',
+      },
+      {
+        title: 'Open Source Map',
+        imgSrc: './assets/img/map.png',
+        description: `Worked in a team to build an open source map application, incorporating shortest path finding algoritms (Dijkstra and A*).`,
+        tools: 'C++, Glade, GTK',
+        accomplishments: [
+          'Leveraged C++ STL classes, such as maps and vectors, to effectively store and manage street and intersection data to optimize search operations and path drawing',
+          'Utilized Glade and GTK to design and implement menu items and buttons to facilitate zooming, panning, and navigation within the map interface, as well as search bars enabling users to locate intersections by typing in street names.',
+          'Integrated path finding algorithms, Dijkstra and A* to quickly find and display the fastest path between two intersections.',
+        ],
       }
     ];
 
 
     function createProjectCard(details) {
 
-      const accomplishments = details?.accomplishments?.map(accomplishment => {
+      const accomplishments = details?.accomplishments?.map(accomplishment => 
         `<li>${accomplishment}</li>`
-      }).join();
+      ).join('');
 
       const visitLink = details?.url ? 
       `<a aria-label="Visit " href="${details.url}" target="_blank" data-position="top"
@@ -691,7 +633,7 @@
       return `
       <div class="card medium">
         <div class="card-image waves-effect waves-block waves-light">
-          <img alt="${details.title}" src="${details.imgSrc}" style="height: auto; width: 100%; overflow: hidden;" class="activator" />
+          <img alt="${details.title}" src="${details.imgSrc}" style="height: 100%; width: 100%; object-fit: cover; overflow: hidden;" class="activator" />
         </div>
         <div class="card-content">
           <span class="card-title activator teal-text hoverline">${details.title}<i
@@ -716,12 +658,45 @@
       `
     }
     
-    const recentProject = document.getElementById('recent-project');
-    console.log(recentProject)
-    recentProject.innerHTML = createProjectCard(projects[0]);
-    console.log(recentProject)
+    const recentProjectRef = document.getElementById('recent-project');
+    const allProjectsRef = document.getElementById('all-projects');
+
+    const recentProjectContent = createProjectCard(projects[0]);
+    const allProjectsContent = projects.map((project) => {
+      return `<div class="col s12 m6 l4">
+        ${createProjectCard(project)}
+        </div>`
+    }).join('');
+
+    // on init -- show recent project
+    recentProjectRef.innerHTML = recentProjectContent;
+
+    var showAllProjects = false;
+    // create event listener for button
+    const projectsButton = document.getElementById('projects-button');
+    projectsButton.addEventListener('click', handleProjectsClick);
+
+    function handleProjectsClick(event) {
+      showAllProjects = !showAllProjects;
+      if (showAllProjects) {
+        // remove most recent
+        recentProjectRef.innerHTML = '';
+        allProjectsRef.innerHTML = allProjectsContent;
+        projectsButton.innerHTML = 'Show Most Recent';
+      } else {
+        // only show recent project
+        allProjectsRef.innerHTML = '';
+        recentProjectRef.innerHTML = recentProjectContent;
+        projectsButton.innerHTML = 'Show All Projects';
+      }
+
+    }
+
 
   </script>
+
+
+
 </body>
 
 </html>
