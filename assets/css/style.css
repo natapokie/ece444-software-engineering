@@ -1,17 +1,40 @@
+:root {
+  --purple: #9fa0d2;
+  --dark-purple: #302c54;
+  --medium-purple: #7273b1;
+  --charcoal: #333333;
+
+  --white: #fff;
+}
+
+body {
+  color: var(--charcoal);
+  /* background-color: var(--charcoal); */
+
+  font-size: 18px;
+}
+
+.typing {
+  color: var(--purple);
+}
+
+.fa {
+  background-color: var(--medium-purple);
+}
+
 .profile-pic {
   position: relative;
-  max-width:130px;
-  max-height:130px;
+  max-width: 130px;
+  max-height: 130px;
   width: auto;
   height: auto;
   overflow: hidden;
   /* display: inline-block; */
-  
-  
+
   /* background-size: cover;  */
-  margin: -31px; 
-  margin-left:-7px;
-  border: 6px solid rgba(0, 77, 64, 0.4); 
+  margin: -31px;
+  margin-left: -7px;
+  border: 6px solid var(--purple);
   border-radius: 50% !important;
 }
 
@@ -24,7 +47,7 @@
   /* visibility: hidden; */
   position: fixed;
   /* margin-inline-end: auto;  */
-  bottom: 0; 
+  bottom: 0;
   right: 0;
 }
 
@@ -41,7 +64,7 @@
   width: 50px;
   height: 50px;
   border: 0;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   font-size: 30px;
   line-height: 70px;
@@ -63,8 +86,8 @@
 }
 
 .icon-btn:hover {
-  transform: scale(1.10);
-  color: #FFFFFF;
+  transform: scale(1.1);
+  color: #ffffff;
 }
 
 .linkedin:hover {
@@ -85,7 +108,7 @@
   position: relative;
   padding: 11px 35px;
   background: #fff;
-  color: #00796b;
+  color: var(--dark-purple);
   border: 2px solid #fff;
   font-weight: 600;
   font-size: 15px;
@@ -115,18 +138,13 @@
   -webkit-border-radius: 5px;
 }
 
-.contactme:hover{
-  color: #00796b;
+.contactme:hover {
+  color: var(--medium-purple);
   background-color: white;
 }
 /* main body */
 
 /* body-color */
-
-body {
-  color: #333;
-  font-size: 18px;
-}
 
 /* body {
   color: black;
@@ -140,32 +158,7 @@ body {
 } */
 
 a {
-  color: #004d40;
-}
-
-/* main blockqoute */
-
-/* blockquote {
-  border-left: 5px solid #795548;
-  color: #795548;
-  font-size: 125%;
-  font-weight: 400;
-  margin: 20px 0;
-  padding-left: 1.5rem;
-} */
-
-blockquote {
-  border-left: 5px solid #795548;
-  color: #795548;
-  font-size: 125%;
-  font-weight: 400;
-  margin: 20px 0;
-  padding-left: 1.5rem;
-}
-
-blockquote * {
-  font-size: inherit;
-  line-height: inherit;
+  color: var(--medium-purple);
 }
 
 .text-center {
@@ -243,7 +236,8 @@ ul.side-nav.fixed a {
   padding: 10px 0 12px;
 }
 
-ul.table-of-contents li.logo a.active, ul.table-of-contents li.logo a:hover {
+ul.table-of-contents li.logo a.active,
+ul.table-of-contents li.logo a:hover {
   border: none;
   font-weight: 200;
 }
@@ -269,12 +263,14 @@ ul.side-nav.fixed li.logo a {
   line-height: 100%;
 }
 
-ul.table-of-contents li:not(.logo) a.active, ul.table-of-contents li:not(.logo) a:hover {
+ul.table-of-contents li:not(.logo) a.active,
+ul.table-of-contents li:not(.logo) a:hover {
   background-color: #fafafa;
   border-left: 3px solid;
 }
 
-ul.side-nav.fixed.table-of-contents li:not(.logo) a span, ul#slide-out li:not(.logo) a span {
+ul.side-nav.fixed.table-of-contents li:not(.logo) a span,
+ul#slide-out li:not(.logo) a span {
   color: #333 !important;
 }
 
@@ -320,7 +316,8 @@ h3 {
 } */
 
 #intro.section {
-  background: #a7ffeb repeat;
+  background-color: var(--medium-purple);
+  /* background: #a7ffeb repeat; */
   position: relative;
 }
 
@@ -466,14 +463,8 @@ a.hoverline {
   -webkit-transition: 0.25s all;
 }
 
-/* main a.hoverline */
-
-/* a.hoverline:hover {
-  border-bottom: 3px solid #24305e !important;
-} */
-
 a.hoverline:hover {
-  border-bottom: 3px solid #004d40 !important;
+  border-bottom: 3px solid var(--medium-purple) !important;
 }
 
 #skills .card.large {
@@ -549,7 +540,8 @@ small {
 /* main .teal-text */
 
 .teal-text {
-  color: #008073 !important;
+  /* color: #008073 !important; */
+  color: var(--purple) !important;
 }
 
 /* .teal-text {
@@ -559,7 +551,8 @@ small {
 /* .teal */
 
 .teal {
-  background-color: #008073 !important;
+  /* background-color: #008073 !important; */
+  background-color: var(--dark-purple) !important;
 }
 
 /* .teal {
@@ -601,8 +594,9 @@ small {
     height: 64px;
     position: absolute;
   }
-  nav a.button-collapse, nav a.button-collapse i {
-    color: #009688;
+  nav a.button-collapse,
+  nav a.button-collapse i {
+    /* color: #009688; */
     height: 56px;
     line-height: 56px;
   }
@@ -627,7 +621,8 @@ small {
     width: 100%;
     position: absolute;
   }
-  .name-title>span, .name-title>a {
+  .name-title > span,
+  .name-title > a {
     position: relative;
     line-height: 20px;
   }
@@ -639,7 +634,8 @@ small {
     display: block;
     font-size: 14px;
   }
-  h3, .container {
+  h3,
+  .container {
     position: relative;
     top: 64px;
   }
