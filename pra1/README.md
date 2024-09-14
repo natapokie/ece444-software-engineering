@@ -25,4 +25,10 @@ _Screenshot of new theme_
 
 ## Activity 4
 
+![Activity4a](./screenshots/activity4a.png)
+_Screenshot of repo_
+
+![Activity4b](./screenshots/activity4b.png)
+_Screenshot of embedded map_
+
 ## Activity 5
