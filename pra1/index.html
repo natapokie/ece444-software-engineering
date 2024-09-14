@@ -334,6 +334,17 @@
     <section id="projects" class="section scrollspy">
       <h3 class="page-title white-text teal">Projects</h3>
       <div class="container">
+
+        <div class="row"  style="display: flex; flex-direction: column; align-items: center; justify-content: center;"> 
+          <div id="recent-project">
+            <!-- INSERT RECENT PROJECT -->
+          </div>
+          <button class='buttons projects-button'>
+            See All Projects
+          </button>
+        </div>
+        
+
         <div class="row">
 
           <div class="col s12 m6 l4">
@@ -633,6 +644,83 @@
         closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
       })
     })
+  </script>
+
+
+  <script>
+    // note: most recent project at index 1:
+    var projects = [
+      {
+        title: 'Orientation Week Website',
+        imgSrc: './assets/img/froshweek.png',
+        description: `Worked in a team to build a webite for F!rosh week to handle first year student registration and payment through Stripe. 
+                  The website was also used as a platform for the Scavenger Hunt event.`,
+        tools: 'React, Express.js, HTML/CSS, MongoDB',
+        accomplishments: [
+          'Register/login to the website to sign up for F!rosh week',
+          'View F!rosh Week schedule, FAQ page (enabling admins to add/update and delete questions and provide responses) and Announcements',
+          'Upload missions for Scavenger Hunt event, enable certain users judging priveliges and assigning points to teams.',
+        ],
+        url: 'https://www.orientation.skule.ca/',
+        github: 'https://github.com/UofT-Frosh-Orientation/orientation-website',
+      }
+    ];
+
+
+    function createProjectCard(details) {
+
+      const accomplishments = details?.accomplishments?.map(accomplishment => {
+        `<li>${accomplishment}</li>`
+      }).join();
+
+      const visitLink = details?.url ? 
+      `<a aria-label="Visit " href="${details.url}" target="_blank" data-position="top"
+              data-tooltip="View Online"
+              class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
+                class="fa fa-external-link"></i></a>`
+      : `<></>`;
+      const gitHubLink = details?.github ?
+      `<a aria-label="Visit the GitHub repo for  project" href="${details.github}"
+              target="_blank" data-position="top" data-tooltip="View Source"
+              class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
+                class="fa fa-github"></i></a>`
+      :
+      `<></>`;
+
+      // return the card content
+      return `
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img alt="${details.title}" src="${details.imgSrc}" style="height: auto; width: 100%; overflow: hidden;" class="activator" />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator teal-text hoverline">${details.title}<i
+              class="mdi-navigation-more-vert right"></i></span>
+          <p>
+            ${details.description}
+          </p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text"><small>Accomplishments</small><i
+              class="mdi-navigation-close right"></i></span>
+          <ul>
+            <li><b>Tools:</b> ${details.tools}</li>
+            ${accomplishments}
+          </ul>
+          <div class="card-action">
+            ${visitLink}
+            ${gitHubLink}
+          </div>
+        </div>
+      </div>
+      `
+    }
+    
+    const recentProject = document.getElementById('recent-project');
+    console.log(recentProject)
+    recentProject.innerHTML = createProjectCard(projects[0]);
+    console.log(recentProject)
+
   </script>
 </body>
 
