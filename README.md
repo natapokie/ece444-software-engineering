@@ -32,3 +32,12 @@ _Screenshot of repo_
 _Screenshot of embedded map_
 
 ## Activity 5
+
+![Activity5a](./screenshots/activity5a.png)
+_Screenshot of repo_
+
+![Activity5b](./screenshots/activity5b.png)
+_Screenshot of recent project_
+
+![Activity5c](./screenshots/activity5b.png)
+_Screenshot of all projects_
