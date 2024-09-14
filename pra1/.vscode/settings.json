@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.port": 5501,
+  "editor.formatOnSave": false,
+// Enable per-language
+"[javascript,html,json]": {
+    "editor.formatOnSave": true
+},
+
+}
