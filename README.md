@@ -39,5 +39,5 @@ _Screenshot of repo_
 ![Activity5b](./screenshots/activity5b.png)
 _Screenshot of recent project_
 
-![Activity5c](./screenshots/activity5b.png)
+![Activity5c](./screenshots/activity5c.png)
 _Screenshot of all projects_
