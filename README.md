@@ -2,22 +2,26 @@
 
 This repo is a clone of [varadbhogayata.github.io](https://github.com/varadbhogayata/varadbhogayata.github.io).
 
-
 ## Activity 1: Cloning personal website repo into your own GitHub account
 
 ![Activity1](./screenshots/activity1.png)
-*Screenshot of repo*
+_Screenshot of repo_
 
 ## Activity 2
 
-
 ![Activity2a](./screenshots/activity2a.png)
-*Screenshot of repo*
+_Screenshot of repo_
 
 ![Activity2b](./screenshots/activity2b.png)
-*Screenshot of deployed website*
+_Screenshot of deployed website_
 
 ## Activity 3
+
+![Activity3a](./screenshots/activity3a.png)
+_Screenshot of repo_
+
+![Activity3b](./screenshots/activity3b.png)
+_Screenshot of new theme_
 
 ## Activity 4
 
