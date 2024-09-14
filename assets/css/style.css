@@ -118,6 +118,23 @@ body {
   -webkit-border-radius: 5px;
 }
 
+.projects-button {
+  position: relative;
+  padding: 11px 35px;
+  background: var(--medium-purple);
+  color: var(--white);
+  border: 2px solid #fff;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.projects-button:focus {
+  background: var(--dark-purple) !important;
+}
+
 /* .readme:hover{
   color: white;
   background-color: #00796b;
@@ -187,13 +204,7 @@ nav i {
 
 /* main */
 
-/* main {
-  background: url(../../assets/img/bg.png) repeat;
-  padding-left: 190px;
-} */
-
 main {
-  background: url(../../assets/img/bg.png) repeat;
   padding-left: 190px;
 }
 
