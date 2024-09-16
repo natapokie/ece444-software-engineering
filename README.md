@@ -2,6 +2,11 @@
 
 This repo is a clone of [varadbhogayata.github.io](https://github.com/varadbhogayata/varadbhogayata.github.io).
 
+Website is available [here](https://natapokie.github.io/ece444-software-engineering).
+
+Notes:
+- [Deploy a folder from another repo to GitHub pages](https://stackoverflow.com/questions/77726552/how-to-deploy-a-website-with-github-pages-from-a-folder-other-than-docs)
+
 ## Activity 1: Cloning personal website repo into your own GitHub account
 
 ![Activity1](./screenshots/activity1.png)
