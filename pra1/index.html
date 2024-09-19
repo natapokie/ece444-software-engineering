@@ -581,6 +581,18 @@
   <script>
     // note: most recent project at index 1:
     var projects = [
+    {
+        title: 'Open Source Map',
+        imgSrc: './assets/img/map.png',
+        description: `Worked in a team to build an open source map application, incorporating shortest path finding algoritms (Dijkstra and A*).`,
+        tools: 'C++, Glade, GTK',
+        accomplishments: [
+          'Leveraged C++ STL classes, such as maps and vectors, to effectively store and manage street and intersection data to optimize search operations and path drawing',
+          'Utilized Glade and GTK to design and implement menu items and buttons to facilitate zooming, panning, and navigation within the map interface, as well as search bars enabling users to locate intersections by typing in street names.',
+          'Integrated path finding algorithms, Dijkstra and A* to quickly find and display the fastest path between two intersections.',
+        ],
+        date: '2022-05-01'
+      },
       {
         title: 'Orientation Week Website',
         imgSrc: './assets/img/froshweek.png',
@@ -594,18 +606,8 @@
         ],
         url: 'https://www.orientation.skule.ca/',
         github: 'https://github.com/UofT-Frosh-Orientation/orientation-website',
+        date: '2022-08-01'
       },
-      {
-        title: 'Open Source Map',
-        imgSrc: './assets/img/map.png',
-        description: `Worked in a team to build an open source map application, incorporating shortest path finding algoritms (Dijkstra and A*).`,
-        tools: 'C++, Glade, GTK',
-        accomplishments: [
-          'Leveraged C++ STL classes, such as maps and vectors, to effectively store and manage street and intersection data to optimize search operations and path drawing',
-          'Utilized Glade and GTK to design and implement menu items and buttons to facilitate zooming, panning, and navigation within the map interface, as well as search bars enabling users to locate intersections by typing in street names.',
-          'Integrated path finding algorithms, Dijkstra and A* to quickly find and display the fastest path between two intersections.',
-        ],
-      }
     ];
 
 
@@ -661,8 +663,11 @@
     const recentProjectRef = document.getElementById('recent-project');
     const allProjectsRef = document.getElementById('all-projects');
 
-    const recentProjectContent = createProjectCard(projects[0]);
-    const allProjectsContent = projects.map((project) => {
+    // sort projects using date field by most recent to least recent
+    const allProjectsSorted = projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const recentProjectContent = createProjectCard(allProjectsSorted[0]);
+    const allProjectsContent = allProjectsSorted.map((project) => {
       return `<div class="col s12 m6 l4">
         ${createProjectCard(project)}
         </div>`
