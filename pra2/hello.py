@@ -23,7 +23,8 @@ moment = Moment(app)
 # EXAMPLE 3-3 Rendering template
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # EXAMPLE 3-13 adding a datetime variable
+    return render_template('index.html', current_time=datetime.utcnow())
 
 @app.route('/user/<name>')
 def user(name):
