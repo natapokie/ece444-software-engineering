@@ -1,10 +1,12 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 app = Flask(__name__)
 
 # EXAMPLE 3-4 Flask-Bootstrap initialization
-Bootstrap = Bootstrap(app)
+bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 # EXAMPLE 2-1
 # defines application instance and a single route and view function.
