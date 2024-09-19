@@ -1,5 +1,10 @@
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
+
 app = Flask(__name__)
+
+# EXAMPLE 3-4 Flask-Bootstrap initialization
+Bootstrap = Bootstrap(app)
 
 # EXAMPLE 2-1
 # defines application instance and a single route and view function.
@@ -13,8 +18,7 @@ app = Flask(__name__)
 # def user(name):
 #     return '<h1>Hello, {}!</h1>'.format(name)
 
-# EXAMPLE 3-3
-# rendering templates
+# EXAMPLE 3-3 Rendering template
 @app.route('/')
 def index():
     return render_template('index.html')
