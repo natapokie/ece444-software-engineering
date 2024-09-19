@@ -3,6 +3,15 @@
 
 This repo is a clone of [https://github.com/miguelgrinberg/flasky](https://github.com/miguelgrinberg/flasky).
 
+## Activity 1.2 Textbook Examples
+
+### Example 2-1 hello.py
+
+```
+export FLASK_APP=hello.py
+flask run
+```
+
 --------------------------------------------
 
 This repository contains the source code examples for the second edition of my O'Reilly book [Flask Web Development](http://www.flaskbook.com).
