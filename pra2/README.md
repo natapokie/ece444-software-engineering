@@ -12,6 +12,12 @@ export FLASK_APP=hello.py
 flask run
 ```
 
+# Activity 1.4 Chapter 4 Example
+
+![Activity1-4](./screenshots/activity1-4.png)
+
+_Screenshot of flash after modifying name and email, and entering a non-uoft email_
+
 --------------------------------------------
 
 This repository contains the source code examples for the second edition of my O'Reilly book [Flask Web Development](http://www.flaskbook.com).
