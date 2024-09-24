@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from datetime import datetime
@@ -40,26 +40,46 @@ moment = Moment(app)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # EXAMPLE 3-13 adding a datetime variable
-    print(datetime.utcnow())
+    # print(datetime.utcnow())
 
     # EXAMPLE 4-4 handle webform with GET and POST request methods
     name = None
     email = None
 
+    # flash = False
+
     form = NameForm()
     if form.validate_on_submit():
-        name = form.name.data
+        # to remember things from one request to the next, by storing them in th user session
+        old_name = session.get('name')
+        old_email = session.get('email')
+
+        # TODO: flash not being displayed
+        if old_name is not None and old_name != form.name.data:
+            print('flash name!')
+            flash('Looks like you have changed your name!')
+        if old_email is not None and old_email != form.email.data:
+            print('flash email!')
+            flash('Looks like you have changed your email!')
+        
+        session['name'] = form.name.data
+        # session['email'] = form.email.data
+
+        # name = form.name.data
 
         # check if uoft email
         if (form.email.data.find('utoronto') != -1):
-            email = f'Your UofT email is {form.email.data}'
+            session['email'] = f'Your UofT email is {form.email.data}'
+            # email = f'Your UofT email is {form.email.data}'
         else:
-            email = 'Please use your UofT email'
+            session['email'] = 'Please use your UofT email'
+            # email = 'Please use your UofT email'
 
-        form.name.data = ''
-        form.email.data = ''
+        # form.name.data = ''
+        # form.email.data = ''
+        return redirect(url_for('index'))
 
-    return render_template('index.html', current_time=datetime.utcnow(), form=form, name=name, email=email)
+    return render_template('index.html', current_time=datetime.utcnow(), form=form, name=session.get('name'), email=session.get('email'))
 
 @app.route('/user/<name>')
 def user(name):
