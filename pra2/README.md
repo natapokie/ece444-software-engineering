@@ -1,13 +1,25 @@
 # PRA2 Flask Web Development & Docker (Natalie)
-======
+
 
 This repo is a clone of [https://github.com/miguelgrinberg/flasky](https://github.com/miguelgrinberg/flasky).
 
-## Activity 1.2 Textbook Examples
+### Python Setup
+```bash
+# install python3-venv package
+sudo apt-get install python3-venv
 
-### Example 2-1 hello.py
+# create a virtual environment named venv
+python3 -m venv venv
 
+# activate the virtual environment
+source venv/bin/activate
+
+# install relevant packages using pip
+pip install -r requirements.txt
 ```
+
+### Running the Flask App hello.py
+```bash
 export FLASK_APP=hello.py
 flask run
 ```
@@ -22,7 +34,7 @@ _Screenshot of flash after modifying name and email, and entering a non-uoft ema
 
 [Reference for Docker Build](https://www.cherryservers.com/blog/docker-build-command)
 
-```
+```bash
 # build img from pra2 root folder, tagged with sample app, "latest" version
 # when running commands from venv, use -p to specify port
 docker build -t pra2:latest .
