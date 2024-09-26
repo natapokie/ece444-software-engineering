@@ -38,7 +38,8 @@ _Screenshot of flash after modifying name and email, and entering a non-uoft ema
 # build img from pra2 root folder, tagged with sample app, "latest" version
 # when running commands from venv, use -p to specify port
 docker build -t pra2:latest .
-docker run -d -p 5000:5000 pra2
+docker run -p <host_port>:<container_port> <image_name>
+docker run -d -p 9999:5000 pra2
 
 # note: to run interactive bash shell
 docker run -it pra2:latest /bin/sh
