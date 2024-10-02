@@ -36,3 +36,12 @@ export DATABASE_URL="the value of the external database URL you copied earlier"
 
 flask shell
 ```
+
+### Linting and Code Formatting
+```bash
+# linting
+python -m flake8 --exclude env --ignore E402,E501 .
+
+# code formatting
+python -m black --exclude=env .
+```

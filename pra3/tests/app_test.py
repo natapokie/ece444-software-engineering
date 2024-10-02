@@ -1,4 +1,3 @@
-import os
 import pytest
 import json
 from pathlib import Path
@@ -76,6 +75,7 @@ def test_messages(client):
     assert b"&lt;Hello&gt;" in rv.data
     assert b"<strong>HTML</strong> allowed here" in rv.data
 
+
 def test_delete_message(client):
     """Ensure the messages are being deleted"""
     rv = client.get("/delete/1")
@@ -86,12 +86,13 @@ def test_delete_message(client):
     data = json.loads(rv.data)
     assert data["status"] == 1
 
+
 def test_search(client):
     """Ensure search is working"""
     login(client, app.config["USERNAME"], app.config["PASSWORD"])
-    
+
     # create test entry
-    rv_entry = client.post(
+    client.post(
         "/add",
         data=dict(title="<Hello>", text="<strong>HTML</strong> allowed here"),
         follow_redirects=True,
@@ -99,17 +100,17 @@ def test_search(client):
 
     # send query for Hello -- note search.html converts query to lowercase
     # and checks for matching title or text
-    rv_search = client.get(
+    rv = client.get(
         "/search/",
         query_string={"query": "Hello"},
         follow_redirects=True,
     )
-    assert b"&lt;Hello&gt;" in rv_search.data
-    assert b"<strong>HTML</strong> allowed here" in rv_search.data
+    assert b"&lt;Hello&gt;" in rv.data
+    assert b"<strong>HTML</strong> allowed here" in rv.data
 
-    rv_search = client.get(
+    rv = client.get(
         "/search/",
         query_string={"query": "Bye"},
         follow_redirects=True,
     )
-    assert b"" in rv_search.data
+    assert b"" in rv.data
