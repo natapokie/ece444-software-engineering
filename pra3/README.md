@@ -26,3 +26,13 @@ Run tests:
 ```bash
 python -m pytest
 ```
+
+Set up Environment Variables
+
+Needed for step [Connect the database to the Flaskr-tdd project](https://github.com/shuruizUofT/flaskr-tdd?tab=readme-ov-file#connect-the-database-to-the-flaskr-tdd-project)
+```bash
+export FLASK_APP=project/app.py
+export DATABASE_URL="the value of the external database URL you copied earlier"
+
+flask shell
+```
