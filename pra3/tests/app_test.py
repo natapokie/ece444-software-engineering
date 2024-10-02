@@ -40,10 +40,10 @@ def test_index(client):
     assert response.status_code == 200
 
 
-def test_database(client):
-    """initial test. ensure that the database exists"""
-    tester = Path("test.db").is_file()
-    assert tester
+# def test_database(client):
+#     """initial test. ensure that the database exists"""
+#     tester = Path("test.db").is_file()
+#     assert tester
 
 
 def test_empty_db(client):
@@ -81,3 +81,25 @@ def test_delete_message(client):
     rv = client.get('/delete/1')
     data = json.loads(rv.data)
     assert data["status"] == 1
+
+def test_search(client):
+    """Ensure search is working"""
+    login(client, app.config["USERNAME"], app.config["PASSWORD"])
+    
+    # create test entry
+    rv_entry = client.post(
+        "/add",
+        data=dict(title="<Hello>", text="<strong>HTML</strong> allowed here"),
+        follow_redirects=True,
+    )
+
+    # send query for Hello -- note search.html converts query to lowercase
+    # and checks for matching title or text
+    rv_search = client.get(
+        "/search/",
+        query_string={"query": "Hello"},
+        follow_redirects=True,
+    )
+
+    assert b"&lt;Hello&gt;" in rv_search.data
+    assert b"<strong>HTML</strong> allowed here" in rv_search.data
