@@ -3,6 +3,7 @@
 ## Activity 1: Microservices
 
 ![Activity1](./assets/microservices.png)
+
 _Figure 1. Microservices Architecture of Campus Connect_
 
 **User Service**: Handles user account management, authentication, and maintaining user profiles (listings, reviews, feedback). This service would have APIs for creating user accounts, logging in/getting user data and authentication.
@@ -22,6 +23,7 @@ Database for each Microservice: Each microservice has it's own data base.
 ## Activity 2: Monolithic
 
 ![Activity2](./assets/monolithic.png)
+
 _Figure 1. Monolithic Architecture of Campus Connect_
 
 In the monolithic design, we're following the three layers: UI, Business Logic and Data Access layers.
