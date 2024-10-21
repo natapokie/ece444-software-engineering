@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Flask App</title>
+  </head>
+  <body>
+    <h1>🚨 Fake News Detector 🚨</h1>
+
+    <form method="POST">
+      {{ form.csrf_token }} {{ form.text.label }}<br />
+      {{ form.text(rows=10, cols=50) }}<br />
+      {{ form.submit }}
+    </form>
+  </body>
+</html>
