@@ -59,4 +59,16 @@ flask run
 pip freeze
 ```
 
-    
+### Upload Flask App to Elastic Beanstalk App
+
+Elastic Beanstalk App accessible here: http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/
+
+Reference for elastic beanstalk config: [video](https://youtu.be/dhHOzye-Rms?si=yz6kkZtbdzNxz2UF)
+
+1. zip relevant files 
+    - .ebextensions
+    - models/
+    - templates/
+    - application.py
+    - requirements.txt
+2. Upload zip file to Elastic Beanstalk App
