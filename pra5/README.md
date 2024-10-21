@@ -49,9 +49,14 @@ pip install -r requirements.txt
 
 ```bash
 # run the flask app
-export FLASK_APP=app.py # wsl
-set FLASK_APP=app.py    # windows
+export FLASK_APP=app.py          # wsl
+$env:FLASK_APP="application.py"  # windows (powershell)
 flask run
+```
+
+```bash
+# you can grab all dependencies with
+pip freeze
 ```
 
     

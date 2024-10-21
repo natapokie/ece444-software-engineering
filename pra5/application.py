@@ -7,8 +7,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import pickle
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your secret key'
+application = Flask(__name__)
+application.config['SECRET_KEY'] = 'your secret key'
 
 model = None
 vectorizer = None
@@ -34,7 +34,7 @@ def load_model():
     # prediction = load_model.predict(vectorizer.transform(['I love this movie']))
     # print(prediction)
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def index():
 
     if (model is None) or (vectorizer is None):
@@ -55,7 +55,7 @@ def index():
 
     return render_template('index.html', form=NewsForm())
 
-@app.route('/result')
+@application.route('/result')
 def result():
     user_text = request.args.get('user_text')
     prediction = request.args.get('prediction')
@@ -63,4 +63,4 @@ def result():
     return render_template('result.html', user_text=user_text, prediction=prediction)
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
