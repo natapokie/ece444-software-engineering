@@ -31,6 +31,27 @@
 
     Launch configurations are mentioned here: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-autoscaling-launch-templates.html#environments-cfg-autoscaling-launch-templates-options.
 
+## Python Application
 
+### Start venv and install dependencies
+
+```bash
+# create the virtual env
+python3 -m venv venv    
+
+# activate the environment
+source venv/bin/activate    # on wsl
+venv\Scripts\activate       # on windows
+
+# install dependencies
+pip install -r requirements.txt
+```
+
+```bash
+# run the flask app
+export FLASK_APP=app.py # wsl
+set FLASK_APP=app.py    # windows
+flask run
+```
 
     
