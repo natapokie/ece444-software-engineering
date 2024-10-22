@@ -1,3 +1,5 @@
+import os
+
 import requests
 import pandas as pd
 from datetime import datetime
@@ -11,10 +13,11 @@ sns.set_theme(style="whitegrid")
 plt.rcParams['figure.figsize'] = (8, 6)
 
 # Number of requests to send
-ITERATIONS = 1
+ITERATIONS = 100
 
 # save outputs to specified directory
 OUTPUT_DIR = './output'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # URL and headers from your cURL request
 url = "http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/predict"
@@ -61,6 +64,8 @@ for test_id, test  in enumerate(test_data):
             response = requests.post(url, headers=headers, json=test, verify=False)  # verify=False to ignore SSL warnings
             response_time = datetime.now()
 
+            print('response prediciton', response.json().get('prediction'))
+
             response_duration = (response_time - request_time).total_seconds()
             
             # Log request and response details
@@ -68,7 +73,7 @@ for test_id, test  in enumerate(test_data):
                 "request_time": request_time,
                 "response_time": response_time,
                 "response_duration_seconds": response_duration,
-                "predict": response.text,
+                "predict": response.json().get('prediction'),
                 "label": test["label"],
             })
             
@@ -87,11 +92,11 @@ for test_id, test  in enumerate(test_data):
     df['correct'] = df['predict_numeric'] == df['label_numeric']
     accuracy = df['correct'].mean()
 
-    with open(f'{OUTPUT_DIR}/test_{test_id}_acc.txt', 'w') as acc_file:
+    with open(os.path.join(OUTPUT_DIR, f'test_{test_id}_acc.txt'), 'w') as acc_file:
         acc_file.write(f"Test {test_id} Accuracy: {accuracy:.4f}\n")
 
     # Save DataFrame to CSV
-    csv_file = f'{OUTPUT_DIR}/test_{test_id}_log.csv'
+    csv_file = os.path.join(OUTPUT_DIR, f'test_{test_id}_log.csv')
     df.to_csv(csv_file, index=False)
 
     print(f"Log saved to {csv_file}.")
@@ -106,6 +111,6 @@ for test_id, test  in enumerate(test_data):
     plt.ylabel('Binary Value')
     plt.title(f'Test {test_id}: Predictions and True Labels')
 
-    plt.savefig(f'{OUTPUT_DIR}/test_{test_id}_plot.png', dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(OUTPUT_DIR, f'test_{test_id}_plot.png'), dpi=300, bbox_inches='tight')
 
     # plt.show()
