@@ -13,6 +13,9 @@ plt.rcParams['figure.figsize'] = (8, 6)
 # Number of requests to send
 ITERATIONS = 1
 
+# save outputs to specified directory
+OUTPUT_DIR = './output'
+
 # URL and headers from your cURL request
 url = "http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/predict"
 headers = {
@@ -84,11 +87,11 @@ for test_id, test  in enumerate(test_data):
     df['correct'] = df['predict_numeric'] == df['label_numeric']
     accuracy = df['correct'].mean()
 
-    with open(f'test_{test_id}_acc.txt', 'w') as acc_file:
+    with open(f'{OUTPUT_DIR}/test_{test_id}_acc.txt', 'w') as acc_file:
         acc_file.write(f"Test {test_id} Accuracy: {accuracy:.4f}\n")
 
     # Save DataFrame to CSV
-    csv_file = F'test_{test_id}_log.csv'
+    csv_file = f'{OUTPUT_DIR}/test_{test_id}_log.csv'
     df.to_csv(csv_file, index=False)
 
     print(f"Log saved to {csv_file}.")
@@ -103,6 +106,6 @@ for test_id, test  in enumerate(test_data):
     plt.ylabel('Binary Value')
     plt.title(f'Test {test_id}: Predictions and True Labels')
 
-    plt.savefig(f'test_{test_id}_plot.png', dpi=300, bbox_inches='tight')
+    plt.savefig(f'{OUTPUT_DIR}/test_{test_id}_plot.png', dpi=300, bbox_inches='tight')
 
     # plt.show()
