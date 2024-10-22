@@ -60,6 +60,11 @@ flask run
 pip freeze
 ```
 
+```bash
+# to run unit tests
+python -m pytest
+```
+
 ### Upload Flask App to Elastic Beanstalk App
 
 Elastic Beanstalk App accessible here: http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/
@@ -73,3 +78,9 @@ Reference for elastic beanstalk config: [video](https://youtu.be/dhHOzye-Rms?si=
     - application.py
     - requirements.txt
 2. Upload zip file to Elastic Beanstalk App
+
+### Performance Testing
+
+![boxplots](./performance/output/all_tests_plot.png)
+
+As shown in the figure, all the model predictions matched the true labels.
