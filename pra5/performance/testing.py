@@ -20,7 +20,8 @@ OUTPUT_DIR = './output'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # URL and headers from your cURL request
-url = "http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/predict"
+url = "http://127.0.0.1:5000/predict"
+# url = "http://test-app-env.eba-fctwsrc4.us-east-1.elasticbeanstalk.com/predict"
 headers = {
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.9",
@@ -46,6 +47,8 @@ test_data = [
      "label": "FAKE"},
     { "text": "In a shocking study released by the Institute of Absurd Science, researchers have concluded that chocolate can be classified as a vegetable because it comes from cocoa beans. This revelation has led to a nationwide surge in chocolate sales, with the government now recommending three servings of chocolate daily for a balanced diet. Health experts are still debating how to work this into the food pyramid.", "label": "FAKE"}
 ]
+
+plot_data = []
 
 for test_id, test  in enumerate(test_data):
     print('Test number:', test_id)
@@ -88,6 +91,10 @@ for test_id, test  in enumerate(test_data):
     df['predict_numeric'] = df['predict'].map({'FAKE': 0, 'REAL': 1})
     df['label_numeric'] = df['label'].map({'FAKE': 0, 'REAL': 1})
 
+    # add plot data based on predict_numeric
+    test_plot_data = df['predict_numeric'].tolist()
+    plot_data.append(test_plot_data)
+
     # calculate accuracy and write to a file
     df['correct'] = df['predict_numeric'] == df['label_numeric']
     accuracy = df['correct'].mean()
@@ -101,16 +108,23 @@ for test_id, test  in enumerate(test_data):
 
     print(f"Log saved to {csv_file}.")
 
-    # create box plot
-    sns.set_theme(style="whitegrid")
-
-    # # Create a box plot for the predictions
+    # # Create a box plot for each predictions
     # plt.figure(figsize=(12, 6))
-    sns.boxplot(data=df[['predict_numeric', 'label_numeric']])
-    plt.xticks([0, 1], ['Predictions', 'True Labels'])
-    plt.ylabel('Binary Value')
-    plt.title(f'Test {test_id}: Predictions and True Labels')
+    # sns.boxplot(data=df[['predict_numeric', 'label_numeric']])
+    # plt.xticks([0, 1], ['Predictions', 'True Labels'])
+    # plt.ylabel('Binary Value')
+    # plt.title(f'Test {test_id}: Predictions and True Labels')
 
-    plt.savefig(os.path.join(OUTPUT_DIR, f'test_{test_id}_plot.png'), dpi=300, bbox_inches='tight')
+    # plt.savefig(os.path.join(OUTPUT_DIR, f'test_{test_id}_plot.png'), dpi=300, bbox_inches='tight')
 
     # plt.show()
+
+# create box plot for all tests
+sns.boxplot(data=plot_data)
+plt.xticks(labels=['Test 0', 'Test 1', 'Test 2', 'Test 3'], ticks=[0, 1, 2, 3])
+plt.ylabel('Predicted Value')
+plt.title(f'Predicted Values for Each Test')
+
+plt.savefig(os.path.join(OUTPUT_DIR, f'all_tests_plot.png'), dpi=300, bbox_inches='tight')
+
+plt.show()
