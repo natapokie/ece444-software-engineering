@@ -13,5 +13,11 @@
       {{ form.text(rows=10, cols=50) }}<br />
       {{ form.submit }}
     </form>
+
+    <br>
+    {% if prediction %}
+      <h2>Model Prediction: </h2>
+      <p>{{ prediction }}</p>
+    {% endif %}
   </body>
 </html>

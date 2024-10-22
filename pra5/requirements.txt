@@ -13,3 +13,4 @@ scipy==1.14.1
 threadpoolctl==3.5.0
 Werkzeug==0.16.0
 WTForms==3.2.1
+pytest

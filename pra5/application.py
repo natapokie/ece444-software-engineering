@@ -41,19 +41,25 @@ def index():
         load_model()
 
     form = NewsForm()
+    prediction = None
 
-    if form.validate_on_submit():
-        # print('Form submitted')
+    if request.method == 'POST' and form.validate_on_submit():
+        print('Form submitted')
         text = form.text.data
-        prediction = model.predict(vectorizer.transform([text]))[0]
-        print(prediction)
 
-        # clear the form data
-        form.text.data = ''
+        response = application.test_client().post('/predict', json={'text': text})
+        prediction = response.json.get('prediction')
 
-        return redirect(url_for('result', user_text=text, prediction=prediction))
+    return render_template('index.html', form=NewsForm(), prediction=prediction)
 
-    return render_template('index.html', form=NewsForm())
+@application.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    text = data.get('text')
+
+    prediction = model.predict(vectorizer.transform([text]))[0]
+    return {'prediction': prediction}
+
 
 @application.route('/result')
 def result():
