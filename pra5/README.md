@@ -51,6 +51,7 @@ pip install -r requirements.txt
 # run the flask app
 export FLASK_APP=app.py          # wsl
 $env:FLASK_APP="application.py"  # windows (powershell)
+$env:FLASK_ENV = "development"
 flask run
 ```
 

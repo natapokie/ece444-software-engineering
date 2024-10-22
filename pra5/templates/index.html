@@ -4,20 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Flask App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <h1>🚨 Fake News Detector 🚨</h1>
 
-    <form method="POST">
+    <form method="POST" id="newsForm">
       {{ form.csrf_token }} {{ form.text.label }}<br />
       {{ form.text(rows=10, cols=50) }}<br />
-      {{ form.submit }}
+      <input type="submit" value="Submit" />
     </form>
 
-    <br>
-    {% if prediction %}
-      <h2>Model Prediction: </h2>
-      <p>{{ prediction }}</p>
-    {% endif %}
+    <br />
+    <h2 id="predictionResult"></h2>
+
+    <script>
+      $(document).ready(function () {
+        $('#newsForm').on('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          console.log({ text: $('#text').val() });
+
+          $.ajax({
+            url: '/predict',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ text: $('#text').val() }),
+            success: function (response) {
+              $('#predictionResult').text('Prediction: ' + response.prediction);
+            },
+            error: function (xhr, status, error) {
+              console.error('Error:', error);
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
